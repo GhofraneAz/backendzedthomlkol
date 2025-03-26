@@ -12,15 +12,12 @@ import lombok.*;
 public class Tour {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Corrigé pour suivre la convention Java (camelCase)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id; // Identifiant unique pour la table
 
-    @Column(name = "code_tour", nullable = false, unique = true) // Ajout de contraintes pour éviter les doublons
-    private Long codeTour; 
+    private Long codeTour;  // Le code du tour, unique
 
-    @Column(name = "code_district", nullable = false)
-    private String codeDistrict;
+    private String codeDistrict;  // Code du district lié au tour
 
-    @Column(name = "libelle_tour", nullable = false)
-    private String libelleTour;
+    private String libelleTour;  // Libellé du tour
 }

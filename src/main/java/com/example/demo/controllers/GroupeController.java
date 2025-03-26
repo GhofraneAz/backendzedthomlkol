@@ -40,7 +40,7 @@ public class GroupeController {
         return new ResponseEntity<>(groupeList, HttpStatus.OK);
     }
 
-    @PutMapping("/updateDistrict/{id}")
+    @PutMapping("/updateGroupe/{id}")
     // http://localhost:8080/api/groupes/1
     public ResponseEntity<Groupe> updateGroupe(@PathVariable("id") Long id, @RequestBody Groupe groupe) {
         groupe.setId(id);

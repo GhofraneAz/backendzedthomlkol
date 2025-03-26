@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface TourService {
     Tour createTour(Tour tour);
-    Tour getTourById(Long codeTour);
+    Tour getTourById(Long id);
     List<Tour> getAllTours();
     Tour updateTour(Tour tour);
-    void deleteTour(Long codeTour);
+    void deleteTour(Long id);
 }
 

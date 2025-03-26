@@ -30,8 +30,8 @@ public class TourServiceImpl implements TourService {
 
 
     @Override
-    public Tour getTourById(Long codeTour) {
-        Optional<Tour> optionalTour = tourRepository.findById(codeTour);
+    public Tour getTourById(Long id) {
+        Optional<Tour> optionalTour = tourRepository.findById(id);
         return optionalTour.orElse(null);
     }
 
@@ -52,8 +52,8 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public void deleteTour(Long codeTour) {
-        tourRepository.deleteById(codeTour);
+    public void deleteTour(Long id) {
+        tourRepository.deleteById(id);
     }
 }
 

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -28,10 +29,10 @@ public class TourController {
     }
 
     // Récupérer un tour par son code (ID)
-    @GetMapping("/{codeTour}")
+    @GetMapping("/{id}")
     // http://localhost:8080/api/tours/{codeTour}
-    public ResponseEntity<Tour> getTourById(@PathVariable("codeTour") Long codeTour) {
-        Tour tour = tourService.getTourById(codeTour);
+    public ResponseEntity<Tour> getTourById(@PathVariable("id") Long id) {
+        Tour tour = tourService.getTourById(id);
         if (tour != null) {
             return new ResponseEntity<>(tour, HttpStatus.OK);
         } else {
@@ -48,10 +49,10 @@ public class TourController {
     }
 
     // Mettre à jour un tour
-    @PutMapping("/{codeTour}")
+    @PutMapping("/{id}")
     // http://localhost:8080/api/tours/{codeTour}
-    public ResponseEntity<Tour> updateTour(@PathVariable("codeTour") Long codeTour, @RequestBody Tour tour) {
-        tour.setCodeTour(codeTour);  // Assurez-vous que le codeTour est bien mis à jour dans l'objet Tour
+    public ResponseEntity<Tour> updateTour(@PathVariable("id") Long id, @RequestBody Tour tour) {
+        tour.setCodeTour(id);  // Assurez-vous que le codeTour est bien mis à jour dans l'objet Tour
         Tour updatedTour = tourService.updateTour(tour);
         if (updatedTour != null) {
             return new ResponseEntity<>(updatedTour, HttpStatus.OK);
@@ -61,10 +62,15 @@ public class TourController {
     }
 
     // Supprimer un tour
-    @DeleteMapping("/{codeTour}")
-    // http://localhost:8080/api/tours/{codeTour}
-    public ResponseEntity<String> deleteTour(@PathVariable("codeTour") Long codeTour) {
-        tourService.deleteTour(codeTour);
-        return new ResponseEntity<>("Tour was deleted successfully", HttpStatus.OK);
+  
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTour(@PathVariable Long id) {
+        try {
+        	tourService.deleteTour(id);
+            return ResponseEntity.ok().body(Collections.singletonMap("message", "District supprimé avec succès"));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", e.getMessage()));
+        }
     }
+
 }
