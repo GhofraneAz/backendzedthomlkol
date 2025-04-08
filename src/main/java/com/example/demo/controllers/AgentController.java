@@ -58,4 +58,10 @@ public class AgentController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", e.getMessage()));
         }
     }
+    @PostMapping("/Search")
+    // http://localhost:8080/api/agents
+    public ResponseEntity<List<Agent>> Search(@RequestBody Agent agent) {
+        List<Agent> agentList = agentService.SearchFilter(agent);
+        return new ResponseEntity<>(agentList, HttpStatus.OK);
+    }
 }

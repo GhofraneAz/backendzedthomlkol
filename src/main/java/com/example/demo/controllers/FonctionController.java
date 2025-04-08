@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.entities.Fonction;
+import com.example.demo.entities.Titre;
 import com.example.demo.services.FonctionService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,11 @@ public class FonctionController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", e.getMessage()));
         }
     }
+    @PostMapping("/Search")
+         public ResponseEntity<List<Fonction>> SearchFilter(@RequestBody Fonction fonction) {
+             List<Fonction> fonctionList = fonctionService.SearchFilter(fonction);
+             return new ResponseEntity<>(fonctionList, HttpStatus.OK);
+         }
+    }
 
 
-}

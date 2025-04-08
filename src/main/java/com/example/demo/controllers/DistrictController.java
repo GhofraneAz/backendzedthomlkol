@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.entities.District;
+import com.example.demo.entities.Titre;
 import com.example.demo.services.DistrictService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,12 @@ public class DistrictController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", e.getMessage()));
         }
+    }
+    @PostMapping("/Search")
+    // http://localhost:8080/api/districts
+    public ResponseEntity<List<District>> Search(@RequestBody District district) {
+        List<District> districtList = districtService.SearchFilter(district);
+        return new ResponseEntity<>(districtList, HttpStatus.OK);
     }
 
 }

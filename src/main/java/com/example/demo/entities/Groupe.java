@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Version;
 import lombok.*;
 
 @Entity
@@ -23,7 +22,7 @@ public class Groupe {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String CodeDistrict;
-    private String CodeGroupe;
- 
+    private String codeDistrict;  // 🔥 Correction ici (camelCase)
+    private String codeGroupe;    // 🔥 Correction ici (camelCase)
+
 }

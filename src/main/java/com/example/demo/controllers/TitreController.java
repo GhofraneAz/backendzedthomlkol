@@ -60,5 +60,10 @@ public class TitreController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", e.getMessage()));
         }
     }
-
+@PostMapping("/Search")
+public ResponseEntity<List<Titre>> SearchTitre(@RequestBody Titre titre){
+	 List<Titre> titreList = titreService.SearchFilter(titre);
+     return new ResponseEntity<>(titreList, HttpStatus.OK);
+ 
+}
 }

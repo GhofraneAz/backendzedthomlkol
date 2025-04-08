@@ -72,5 +72,10 @@ public class TourController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", e.getMessage()));
         }
     }
-
+    @PostMapping("/Search")
+    // http://localhost:8080/api/tours/getAllTours
+    public ResponseEntity<List<Tour>> Search(@RequestBody Tour tour) {
+        List<Tour> tourList = tourService.SearchFilter(tour);
+        return new ResponseEntity<>(tourList, HttpStatus.OK);
+    }
 }

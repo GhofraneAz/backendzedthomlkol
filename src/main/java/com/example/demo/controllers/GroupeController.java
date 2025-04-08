@@ -58,5 +58,9 @@ public class GroupeController {
         }
     }
 
-
+    @PostMapping("/Search")
+    public ResponseEntity<List<Groupe>> Search(@RequestBody Groupe groupe) {
+        List<Groupe> groupeList = groupeService.SearchFilter(groupe);
+        return new ResponseEntity<>(groupeList, HttpStatus.OK);
+    }
 }

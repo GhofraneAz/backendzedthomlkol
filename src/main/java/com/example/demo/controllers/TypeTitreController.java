@@ -68,7 +68,12 @@ public class TypeTitreController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", e.getMessage()));
         }
     }
-
+    @PostMapping("/Search")
+    // http://localhost:8080/api/typeTitres
+    public ResponseEntity<List<TypeTitre>> Search(@RequestBody TypeTitre typeTitre) {
+        List<TypeTitre> typeTitreList = typeTitreService.SearchFilter(typeTitre);
+        return new ResponseEntity<>(typeTitreList, HttpStatus.OK);
+    }
     }
 
 

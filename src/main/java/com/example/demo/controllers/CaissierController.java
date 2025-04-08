@@ -58,4 +58,9 @@ public class CaissierController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", e.getMessage()));
         }
     }
+    @PostMapping("/Search")
+    public ResponseEntity<List<Caissier>> Search( @RequestBody Caissier caissier) {
+        List<Caissier> caissierList = caissierService.SearchFilter(caissier);
+        return new ResponseEntity<>(caissierList, HttpStatus.OK);
+    }
 }

@@ -58,5 +58,9 @@ public class LigneController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", e.getMessage()));
         }
     }
-
+    @PostMapping("/Search")
+    public ResponseEntity<List<Ligne>>Search (@RequestBody Ligne ligne) {
+        List<Ligne> ligneList = ligneService.SearchFilter(ligne);
+        return new ResponseEntity<>(ligneList, HttpStatus.OK);
+    }
 }
